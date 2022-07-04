@@ -1,22 +1,39 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true,
-		"jest": true
-    },
-    "extends": [
-        "standard"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaVersion": "latest",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "@typescript-eslint",
-		"jest"
-    ],
-    "rules": {
-		"no-dupe-class-members": "off"
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "extends": [
+    "standard",
+    "plugin:jest/recommended",
+    "plugin:promise/recommended",
+    "plugin:react/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "jest",
+    "promise",
+    "react",
+    "react-hooks",
+    "sort-destructure-keys",
+	"@typescript-eslint"
+  ],
+  "rules": {
+    "indent": ["error", 2],
+	"no-console": "error",
+    "no-dupe-class-members": "off",
+	"prefer-template": "error",
+	"quotes": ["error", "single"],
+	"semi": ["error", "always"]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
     }
+  }
 }
