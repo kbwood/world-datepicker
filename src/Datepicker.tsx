@@ -1,7 +1,6 @@
 import React, { FunctionComponent, useEffect, useState } from 'react';
 import { CalendarBase, CDate } from 'world-calendars';
 import DatepickerControls from './DatepickerControls';
-import DatepickerHeader from './DatepickerHeader';
 import DatepickerMonth from './DatepickerMonth';
 
 interface Props {
@@ -23,11 +22,11 @@ const Datepicker: FunctionComponent<Props> = ({ calendar, date, onSelect = () =>
   return (
     <div className="datepicker">
       <DatepickerControls curDate={curDate} setCurDate={setCurDate} />
-      <DatepickerHeader curDate={curDate} setCurDate={setCurDate} />
       <DatepickerMonth
         curDate={curDate}
         forDate={curDate}
         onSelect={onSelect}
+        setCurDate={setCurDate}
       />
     </div>
   );
