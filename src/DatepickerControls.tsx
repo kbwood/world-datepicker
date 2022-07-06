@@ -1,15 +1,13 @@
-import React, { FunctionComponent } from 'react';
+import React from 'react';
 import { CDate } from 'world-calendars';
+import { NotifyDate } from './types';
 
 interface Props {
   curDate: CDate;
-  setCurDate: (date: CDate) => void;
+  setCurDate: NotifyDate;
 }
 
-const DatepickerControls: FunctionComponent<Props> = ({
-  curDate,
-  setCurDate
-}) => {
+const DatepickerControls = ({ curDate, setCurDate }: Props) => {
   const nextMonth = () => {
     setCurDate(curDate.add(1, 'm'));
   };

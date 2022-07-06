@@ -16,42 +16,52 @@ import 'world-calendars/lib/Taiwan';
 import 'world-calendars/lib/Thai';
 import 'world-calendars/lib/UmmAlQura';
 
-type Props = DPProps & {
+type Props = {
   calendarName: string;
+  date: string;
+  selectOtherMonth: boolean;
+  showOtherMonth: boolean;
 };
 
 export default {
   title: 'Datepicker',
-  component: Datepicker,
   argTypes: {
     calendarName: {
-      control: { type: 'select' },
-      options: [
-        'Coptic',
-        'Discworld',
-        'Ethiopian',
-        'Gregorian',
-        'Hebrew',
-        'Islamic',
-        'Julian',
-        'Mayan',
-        'Nanakshahi',
-        'Nepali',
-        'Persian',
-        'Taiwan',
-        'Thai',
-        'UmmAlQura'
-      ]
-    }
-  }
+      control: {
+        type: 'select'
+      },
+      options: ['Coptic', 'Discworld', 'Ethiopian', 'Gregorian', 'Hebrew', 'Islamic', 'Julian', 'Mayan', 'Nanakshahi', 'Nepali', 'Persian', 'Taiwan', 'Thai', 'UmmAlQura'],
+    },
+    date: { control: 'text' },
+    selectOtherMonth: { control: 'boolean' },
+    showOtherMonth: { control: 'boolean' },
+  },
 };
 
-function Template ({ calendarName, ...otherProps }: Props) {
+function getDate(calendar: CalendarBase, date: string): CDate | undefined {
+  const dateParts = date.split('-');
+  if (dateParts.length !== 3) {
+    return undefined
+  }
+  const dateNumbers = dateParts.map(part => Number(part))
+  if (dateNumbers.some(num => isNaN(num))) {
+    return undefined
+  }
+  try {
+    return calendar.date(...dateNumbers);
+  } catch (e) {
+    return undefined
+  }
+}
+
+function Template ({ calendarName, date = '', selectOtherMonth, showOtherMonth }: Props) {
   const calendar = calendarName ? Calendars.instance(calendarName) : undefined;
+  const curDate = getDate(calendar, date);
   const onSelect = (date: CDate) => {
     alert(`Selected ${date.toString()}`);
   };
-  return <Datepicker {...otherProps} calendar={calendar} onSelect={onSelect} />;
+  const options = { selectOtherMonth, showOtherMonth };
+  return <Datepicker calendar={calendar} date={curDate} onSelect={onSelect} options={options} />;
 }
 
 export const Default = Template.bind({});

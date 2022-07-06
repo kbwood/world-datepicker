@@ -1,18 +1,18 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { CalendarBase, CDate } from 'world-calendars';
 import DatepickerHeader from './DatepickerHeader';
 import DatepickerWeek from './DatepickerWeek';
+import { DisplayOptions, NotifyDate } from './types';
 
 interface Props {
   curDate: CDate;
   forDate: CDate;
-  onSelect: (date: CDate) => void;
-  setCurDate: (date: CDate) => void;
+  onSelect: NotifyDate;
+  options: DisplayOptions;
+  setCurDate: NotifyDate;
 }
 
-const generateDays = (
-  cal: CalendarBase
-) => {
+const generateDays = (cal: CalendarBase) => {
   const daysInWeek = cal.daysInWeek();
   const days: ReactNode[] = [];
   for (let i = 0; i < daysInWeek; i++) {
@@ -26,8 +26,9 @@ const generateWeeks = (
   fromDate: CDate,
   weekCount: number,
   daysInWeek: number,
+  options: DisplayOptions,
   curDate: CDate,
-  onSelect: (date: CDate) => void
+  onSelect: NotifyDate
 ) => {
   const weeks: ReactNode[] = [];
   let forDate = fromDate;
@@ -39,6 +40,7 @@ const generateWeeks = (
         fromDate={forDate}
         daysInWeek={daysInWeek}
         onSelect={onSelect}
+        options={options}
       />
     );
     forDate = forDate.add(1, 'w');
@@ -46,7 +48,7 @@ const generateWeeks = (
   return weeks;
 };
 
-const DatepickerMonth: FunctionComponent<Props> = ({ curDate, forDate, onSelect, setCurDate }) => {
+const DatepickerMonth = ({ curDate, forDate, onSelect, options, setCurDate }: Props) => {
   const cal = forDate.calendar();
   const daysInWeek = cal.daysInWeek();
   const monthFirst = forDate.set(cal.minDay, 'd');
@@ -73,7 +75,7 @@ const DatepickerMonth: FunctionComponent<Props> = ({ curDate, forDate, onSelect,
         </tr>
       </thead>
       <tbody>
-        {generateWeeks(monthStart, weekCount, daysInWeek, curDate, onSelect)}
+        {generateWeeks(monthStart, weekCount, daysInWeek, options, curDate, onSelect)}
       </tbody>
     </table>
   );

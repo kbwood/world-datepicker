@@ -1,9 +1,10 @@
-import React, { FunctionComponent, ReactNode } from 'react';
+import React, { ReactNode } from 'react';
 import { CDate } from 'world-calendars';
+import { NotifyDate } from './types';
 
 interface Props {
   curDate: CDate;
-  setCurDate: (date: CDate) => void;
+  setCurDate: NotifyDate;
 }
 
 const generateYears = (year: number) => {
@@ -18,10 +19,7 @@ const generateYears = (year: number) => {
   return years;
 };
 
-const DatepickerHeader: FunctionComponent<Props> = ({
-  curDate,
-  setCurDate
-}) => {
+const DatepickerHeader = ({ curDate, setCurDate }: Props) => {
   const cal = curDate.calendar();
   const year = curDate.year();
   const setMonth = (event: React.ChangeEvent<HTMLSelectElement>) => {
