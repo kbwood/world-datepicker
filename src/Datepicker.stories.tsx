@@ -1,6 +1,6 @@
 import React from 'react';
-import Calendars, { CDate } from 'world-calendars';
-import Datepicker, { Props as DPProps } from './Datepicker';
+import Calendars, { CalendarBase, CDate } from 'world-calendars';
+import Datepicker from './Datepicker';
 import 'world-calendars/lib/Coptic';
 import 'world-calendars/lib/Discworld';
 import 'world-calendars/lib/Ethiopian';
@@ -30,27 +30,27 @@ export default {
       control: {
         type: 'select'
       },
-      options: ['Coptic', 'Discworld', 'Ethiopian', 'Gregorian', 'Hebrew', 'Islamic', 'Julian', 'Mayan', 'Nanakshahi', 'Nepali', 'Persian', 'Taiwan', 'Thai', 'UmmAlQura'],
+      options: ['Coptic', 'Discworld', 'Ethiopian', 'Gregorian', 'Hebrew', 'Islamic', 'Julian', 'Mayan', 'Nanakshahi', 'Nepali', 'Persian', 'Taiwan', 'Thai', 'UmmAlQura']
     },
     date: { control: 'text' },
     selectOtherMonth: { control: 'boolean' },
-    showOtherMonth: { control: 'boolean' },
-  },
+    showOtherMonth: { control: 'boolean' }
+  }
 };
 
-function getDate(calendar: CalendarBase, date: string): CDate | undefined {
+function getDate (calendar: CalendarBase, date: string): CDate | undefined {
   const dateParts = date.split('-');
   if (dateParts.length !== 3) {
-    return undefined
+    return undefined;
   }
-  const dateNumbers = dateParts.map(part => Number(part))
+  const dateNumbers = dateParts.map(part => Number(part));
   if (dateNumbers.some(num => isNaN(num))) {
-    return undefined
+    return undefined;
   }
   try {
     return calendar.date(...dateNumbers);
   } catch (e) {
-    return undefined
+    return undefined;
   }
 }
 

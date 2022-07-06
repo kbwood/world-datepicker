@@ -1,4 +1,4 @@
-import { CDate } from 'world-calendars'
+import { CDate } from 'world-calendars';
 
 interface DisplayOptions {
   selectOtherMonth?: boolean
@@ -7,4 +7,4 @@ interface DisplayOptions {
 
 type NotifyDate = (date: CDate) => void
 
-export { DisplayOptions, NotifyDate }
+export { DisplayOptions, NotifyDate };

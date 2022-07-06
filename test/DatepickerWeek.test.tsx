@@ -19,7 +19,8 @@ describe('(Component) DatepickerWeek', () => {
       curDate: gregorian.date(2022, 7, 3),
       daysInWeek: 7,
       fromDate: gregorian.date(2022, 6, 29),
-      onSelect: () => {}
+      onSelect: () => {},
+      options: { selectOtherMonth: true, showOtherMonth: true }
     };
     const { container } = render(<DatepickerWeek {...props} />, renderOptions);
 
@@ -88,12 +89,49 @@ describe('(Component) DatepickerWeek', () => {
     `);
   });
 
+  it('should not allow selection of other month days', () => {
+    const props = {
+      curDate: gregorian.date(2022, 7, 3),
+      daysInWeek: 7,
+      fromDate: gregorian.date(2022, 6, 29),
+      onSelect: () => {},
+      options: { selectOtherMonth: false, showOtherMonth: true }
+    };
+    const { container } = render(<DatepickerWeek {...props} />, renderOptions);
+
+    expect(container.querySelector('td')).toMatchInlineSnapshot(`
+      <td>
+        29
+      </td>
+    `);
+  });
+
+  it('should not show other month days', () => {
+    const props = {
+      curDate: gregorian.date(2022, 7, 3),
+      daysInWeek: 7,
+      fromDate: gregorian.date(2022, 6, 29),
+      onSelect: () => {},
+      options: { selectOtherMonth: false, showOtherMonth: false }
+    };
+    const { container } = render(<DatepickerWeek {...props} />, renderOptions);
+
+    /* eslint-disable no-irregular-whitespace */
+    expect(container.querySelector('td')).toMatchInlineSnapshot(`
+      <td>
+         
+      </td>
+    `);
+    /* eslint-enable no-irregular-whitespace */
+  });
+
   it('should render a different/shorter week', () => {
     const props = {
       curDate: gregorian.date(2022, 7, 3),
       daysInWeek: 5,
       fromDate: gregorian.date(2022, 7, 1),
-      onSelect: () => {}
+      onSelect: () => {},
+      options: {}
     };
     const { container } = render(<DatepickerWeek {...props} />, renderOptions);
 
@@ -151,7 +189,8 @@ describe('(Component) DatepickerWeek', () => {
       curDate: gregorian.date(2022, 7, 3),
       daysInWeek: 5,
       fromDate: gregorian.date(2022, 7, 1),
-      onSelect: jest.fn()
+      onSelect: jest.fn(),
+      options: {}
     };
     render(<DatepickerWeek {...props} />, renderOptions);
     await user.click(screen.getByRole('button', { name: '2' }));

@@ -15,6 +15,7 @@ describe('(Component) DatepickerMonth', () => {
       curDate: gregorian.date(2022, 7, 3),
       forDate: gregorian.date(2022, 7, 1),
       onSelect: () => {},
+      options: {},
       setCurDate: () => {}
     };
     const { container } = render(<DatepickerMonth {...props} />);
