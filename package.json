@@ -50,10 +50,10 @@
     "lib/**/*"
   ],
   "dependencies": {
+    "@kbwood/world-calendars": "^0.10.0",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "styled-components": "^5.3.5",
-    "world-calendars": "git://github.com/kbwood/world-calendars.git"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/cli": "^7.15.7",
