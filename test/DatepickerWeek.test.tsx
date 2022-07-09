@@ -2,8 +2,8 @@ import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Calendars from 'world-calendars';
-import 'world-calendars/lib/Gregorian';
+import Calendars from '@kbwood/world-calendars';
+import '@kbwood/world-calendars/lib/Gregorian';
 import DatepickerWeek, { Props } from '../src/DatepickerWeek';
 import defaultTheme from '../src/theme';
 

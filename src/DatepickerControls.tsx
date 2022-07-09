@@ -1,5 +1,5 @@
 import React from 'react';
-import { CDate } from 'world-calendars';
+import { CDate } from '@kbwood/world-calendars';
 import * as S from './DatepickerControls.styles';
 import { NotifyDate } from './types';
 

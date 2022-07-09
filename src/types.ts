@@ -1,4 +1,4 @@
-import { CDate } from 'world-calendars';
+import { CDate } from '@kbwood/world-calendars';
 
 export interface DisplayOptions {
   selectOtherMonth?: boolean

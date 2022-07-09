@@ -1,8 +1,8 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
 import { render } from '@testing-library/react';
-import Calendars from 'world-calendars';
-import 'world-calendars/lib/Gregorian';
+import Calendars from '@kbwood/world-calendars';
+import '@kbwood/world-calendars/lib/Gregorian';
 import DatepickerMonth from '../src/DatepickerMonth';
 import defaultTheme from '../src/theme';
 

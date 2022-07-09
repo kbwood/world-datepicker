@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import Calendars from 'world-calendars';
-import 'world-calendars/lib/Gregorian';
+import Calendars from '@kbwood/world-calendars';
+import '@kbwood/world-calendars/lib/Gregorian';
 import Datepicker from '../src/Datepicker';
 
 jest.mock('../src/DatepickerControls');

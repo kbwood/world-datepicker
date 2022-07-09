@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { CalendarBase, CDate } from 'world-calendars';
+import { CalendarBase, CDate } from '@kbwood/world-calendars';
 import * as S from './Datepicker.styles';
 import DatepickerControls from './DatepickerControls';
 import DatepickerMonth from './DatepickerMonth';

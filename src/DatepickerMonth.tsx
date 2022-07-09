@@ -1,5 +1,5 @@
 import React, { ReactNode } from 'react';
-import { CalendarBase, CDate } from 'world-calendars';
+import { CalendarBase, CDate } from '@kbwood/world-calendars';
 import DatepickerHeader from './DatepickerHeader';
 import * as S from './DatepickerMonth.styles';
 import DatepickerWeek from './DatepickerWeek';
