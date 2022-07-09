@@ -11,11 +11,14 @@ describe('Datepicker', () => {
   const gregorian = Calendars.instance('gregorian');
 
   it('should display the datepicker', () => {
-    expect(render(<Datepicker calendar={gregorian} date={gregorian.date(2022, 7, 3)} />).container)
-      .toMatchInlineSnapshot(`
+    expect(
+      render(
+        <Datepicker calendar={gregorian} date={gregorian.date(2022, 7, 3)} />
+      ).container
+    ).toMatchInlineSnapshot(`
       <div>
         <div
-          class="datepicker"
+          class="sc-bczRLJ dwkSbA"
         >
           <div>
             Controls (current 2022-07-03 (Gregorian))

@@ -1,5 +1,6 @@
 import React from 'react';
 import { CDate } from 'world-calendars';
+import * as S from './DatepickerControls.styles';
 import { NotifyDate } from './types';
 
 interface Props {
@@ -25,23 +26,23 @@ const DatepickerControls = ({ curDate, setCurDate }: Props) => {
   };
 
   return (
-    <div className="datepickerControls">
-      <button onClick={prevYear} type="button">
+    <S.Controls>
+      <S.Button onClick={prevYear} type="button">
         &lt;&lt;
-      </button>
-      <button onClick={prevMonth} type="button">
+      </S.Button>
+      <S.Button onClick={prevMonth} type="button">
         &lt;
-      </button>
-      <button onClick={today} type="button">
+      </S.Button>
+      <S.Button onClick={today} type="button">
         Today
-      </button>
-      <button onClick={nextMonth} type="button">
+      </S.Button>
+      <S.Button onClick={nextMonth} type="button">
         &gt;
-      </button>
-      <button onClick={nextYear} type="button">
+      </S.Button>
+      <S.Button onClick={nextYear} type="button">
         &gt;&gt;
-      </button>
-    </div>
+      </S.Button>
+    </S.Controls>
   );
 };
 

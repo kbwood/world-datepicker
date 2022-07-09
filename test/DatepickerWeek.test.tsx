@@ -1,9 +1,11 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Calendars from 'world-calendars';
 import 'world-calendars/lib/Gregorian';
-import DatepickerWeek from '../src/DatepickerWeek';
+import DatepickerWeek, { Props } from '../src/DatepickerWeek';
+import defaultTheme from '../src/theme';
 
 describe('(Component) DatepickerWeek', () => {
   const gregorian = Calendars.instance('gregorian');
@@ -14,6 +16,14 @@ describe('(Component) DatepickerWeek', () => {
   const renderOptions = { container: tbody };
   const user = userEvent.setup();
 
+  const renderComp = (props: Props) =>
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <DatepickerWeek {...props} />
+      </ThemeProvider>,
+      renderOptions
+    );
+
   it('should render a week', () => {
     const props = {
       curDate: gregorian.date(2022, 7, 3),
@@ -22,62 +32,82 @@ describe('(Component) DatepickerWeek', () => {
       onSelect: () => {},
       options: { selectOtherMonth: true, showOtherMonth: true }
     };
-    const { container } = render(<DatepickerWeek {...props} />, renderOptions);
+    const { container } = renderComp(props);
 
     expect(container).toMatchInlineSnapshot(`
       <tbody>
         <tr>
-          <td>
+          <td
+            class="sc-bczRLJ jPKstU"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-6-29"
             >
               29
             </button>
           </td>
-          <td>
+          <td
+            class="sc-bczRLJ jPKstU"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-6-30"
             >
               30
             </button>
           </td>
-          <td>
+          <td
+            class="sc-bczRLJ gSNRqz"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-7-1"
             >
               1
             </button>
           </td>
-          <td>
+          <td
+            class="sc-bczRLJ cWHtcq"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-7-2"
             >
               2
             </button>
           </td>
-          <td>
+          <td
+            class="sc-bczRLJ iBhMdr"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-7-3"
             >
               3
-              *
             </button>
           </td>
-          <td>
+          <td
+            class="sc-bczRLJ gSNRqz"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-7-4"
             >
               4
             </button>
           </td>
-          <td>
+          <td
+            class="sc-bczRLJ gSNRqz"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-7-5"
             >
@@ -97,11 +127,17 @@ describe('(Component) DatepickerWeek', () => {
       onSelect: () => {},
       options: { selectOtherMonth: false, showOtherMonth: true }
     };
-    const { container } = render(<DatepickerWeek {...props} />, renderOptions);
+    const { container } = renderComp(props);
 
     expect(container.querySelector('td')).toMatchInlineSnapshot(`
-      <td>
-        29
+      <td
+        class="sc-bczRLJ jPKstU"
+      >
+        <span
+          class="sc-dkzDqf cQvaCj"
+        >
+          29
+        </span>
       </td>
     `);
   });
@@ -114,11 +150,13 @@ describe('(Component) DatepickerWeek', () => {
       onSelect: () => {},
       options: { selectOtherMonth: false, showOtherMonth: false }
     };
-    const { container } = render(<DatepickerWeek {...props} />, renderOptions);
+    const { container } = renderComp(props);
 
     /* eslint-disable no-irregular-whitespace */
     expect(container.querySelector('td')).toMatchInlineSnapshot(`
-      <td>
+      <td
+        class="sc-bczRLJ jPKstU"
+      >
          
       </td>
     `);
@@ -133,46 +171,60 @@ describe('(Component) DatepickerWeek', () => {
       onSelect: () => {},
       options: {}
     };
-    const { container } = render(<DatepickerWeek {...props} />, renderOptions);
+    const { container } = renderComp(props);
 
     expect(container).toMatchInlineSnapshot(`
       <tbody>
         <tr>
-          <td>
+          <td
+            class="sc-bczRLJ gSNRqz"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-7-1"
             >
               1
             </button>
           </td>
-          <td>
+          <td
+            class="sc-bczRLJ cWHtcq"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-7-2"
             >
               2
             </button>
           </td>
-          <td>
+          <td
+            class="sc-bczRLJ iBhMdr"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-7-3"
             >
               3
-              *
             </button>
           </td>
-          <td>
+          <td
+            class="sc-bczRLJ gSNRqz"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-7-4"
             >
               4
             </button>
           </td>
-          <td>
+          <td
+            class="sc-bczRLJ gSNRqz"
+          >
             <button
+              class="sc-gsnTZi kSyqLh"
               type="button"
               value="2022-7-5"
             >
@@ -192,7 +244,7 @@ describe('(Component) DatepickerWeek', () => {
       onSelect: jest.fn(),
       options: {}
     };
-    render(<DatepickerWeek {...props} />, renderOptions);
+    renderComp(props);
     await user.click(screen.getByRole('button', { name: '2' }));
 
     expect(props.onSelect).toHaveBeenCalledTimes(1);

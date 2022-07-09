@@ -1,10 +1,8 @@
 import { CDate } from 'world-calendars';
 
-interface DisplayOptions {
+export interface DisplayOptions {
   selectOtherMonth?: boolean
   showOtherMonth?: boolean
 }
 
-type NotifyDate = (date: CDate) => void
-
-export { DisplayOptions, NotifyDate };
+export type NotifyDate = (date: CDate) => void

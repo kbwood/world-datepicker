@@ -1,13 +1,22 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Calendars from 'world-calendars';
 import 'world-calendars/lib/Gregorian';
-import DatepickerControls from '../src/DatepickerControls';
+import DatepickerControls, { Props } from '../src/DatepickerControls';
+import defaultTheme from '../src/theme';
 
 describe('(Component) DatepickerControls', () => {
   const gregorian = Calendars.instance('gregorian');
   const user = userEvent.setup();
+
+  const renderComp = (props: Props) =>
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <DatepickerControls {...props} />
+      </ThemeProvider>
+    );
 
   beforeAll(() => {
     const today = gregorian.date(2022, 7, 5);
@@ -23,34 +32,39 @@ describe('(Component) DatepickerControls', () => {
       curDate: gregorian.date(2022, 7, 3),
       setCurDate: () => {}
     };
-    const { container } = render(<DatepickerControls {...props} />);
+    const { container } = renderComp(props);
 
     expect(container).toMatchInlineSnapshot(`
       <div>
         <div
-          class="datepickerControls"
+          class="sc-bczRLJ kvztRd"
         >
           <button
+            class="sc-gsnTZi fJNuUi"
             type="button"
           >
             &lt;&lt;
           </button>
           <button
+            class="sc-gsnTZi fJNuUi"
             type="button"
           >
             &lt;
           </button>
           <button
+            class="sc-gsnTZi fJNuUi"
             type="button"
           >
             Today
           </button>
           <button
+            class="sc-gsnTZi fJNuUi"
             type="button"
           >
             &gt;
           </button>
           <button
+            class="sc-gsnTZi fJNuUi"
             type="button"
           >
             &gt;&gt;
@@ -65,7 +79,7 @@ describe('(Component) DatepickerControls', () => {
       curDate: gregorian.date(2022, 7, 3),
       setCurDate: jest.fn()
     };
-    render(<DatepickerControls {...props} />);
+    renderComp(props);
     await user.click(screen.getByRole('button', { name: '<<' }));
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
@@ -77,7 +91,7 @@ describe('(Component) DatepickerControls', () => {
       curDate: gregorian.date(2022, 7, 3),
       setCurDate: jest.fn()
     };
-    render(<DatepickerControls {...props} />);
+    renderComp(props);
     await user.click(screen.getByRole('button', { name: '<' }));
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
@@ -89,7 +103,7 @@ describe('(Component) DatepickerControls', () => {
       curDate: gregorian.date(2022, 7, 3),
       setCurDate: jest.fn()
     };
-    render(<DatepickerControls {...props} />);
+    renderComp(props);
     await user.click(screen.getByRole('button', { name: 'Today' }));
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
@@ -101,7 +115,7 @@ describe('(Component) DatepickerControls', () => {
       curDate: gregorian.date(2022, 7, 3),
       setCurDate: jest.fn()
     };
-    render(<DatepickerControls {...props} />);
+    renderComp(props);
     await user.click(screen.getByRole('button', { name: '>' }));
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
@@ -113,7 +127,7 @@ describe('(Component) DatepickerControls', () => {
       curDate: gregorian.date(2022, 7, 3),
       setCurDate: jest.fn()
     };
-    render(<DatepickerControls {...props} />);
+    renderComp(props);
     await user.click(screen.getByRole('button', { name: '>>' }));
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);

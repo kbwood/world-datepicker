@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Calendars, { CalendarBase, CDate } from 'world-calendars';
-import Datepicker from './Datepicker';
 import 'world-calendars/lib/Coptic';
 import 'world-calendars/lib/Discworld';
 import 'world-calendars/lib/Ethiopian';
@@ -15,17 +14,50 @@ import 'world-calendars/lib/Persian';
 import 'world-calendars/lib/Taiwan';
 import 'world-calendars/lib/Thai';
 import 'world-calendars/lib/UmmAlQura';
+import Datepicker from './Datepicker';
+import { Theme } from './theme';
 
-type Props = {
+type StoryProps = {
+  alternateTheme: boolean;
   calendarName: string;
   date: string;
   selectOtherMonth: boolean;
   showOtherMonth: boolean;
 };
 
+const altTheme: Theme = {
+  color: {
+    border: '#5c9ccc',
+    controlsBG: '#fff',
+    controlsFG: '#000',
+    dayBG: '#dfeffc',
+    dayBorder: '#c5dbec',
+    dayFG: '#000',
+    monthBG: '#5c9ccc',
+    monthFG: '#fff',
+    otherMonthBG: '#fff',
+    otherMonthFG: '#000',
+    selectedBG: '#4297d7',
+    selectedFG: '#000',
+    todayBG: '#fad42e',
+    todayFG: '#000',
+    unselectableFG: '#888',
+    weekBG: '#fff',
+    weekFG: '#000',
+    weekendBG: '#d0e5f5',
+    weekendFG: '#000'
+  },
+  font: {
+    family: '"Times New Roman",serif',
+    sizeBody: '16px',
+    sizeHeader: '20px'
+  }
+};
+
 export default {
   title: 'Datepicker',
   argTypes: {
+    alternateTheme: { control: 'boolean' },
     calendarName: {
       control: {
         type: 'select'
@@ -48,23 +80,24 @@ function getDate (calendar: CalendarBase, date: string): CDate | undefined {
     return undefined;
   }
   try {
-    return calendar.date(...dateNumbers);
+    return calendar.date(dateNumbers[0], dateNumbers[1], dateNumbers[2]);
   } catch (e) {
     return undefined;
   }
 }
 
-function Template ({ calendarName, date = '', selectOtherMonth, showOtherMonth }: Props) {
-  const calendar = calendarName ? Calendars.instance(calendarName) : undefined;
-  const curDate = getDate(calendar, date);
+function Template ({ alternateTheme, calendarName, date = '', selectOtherMonth, showOtherMonth }: StoryProps) {
+  const calendar = Calendars.instance(calendarName) || Calendars.instance('gregorian');
+  const [curDate, setCurDate] = useState<CDate | undefined>();
+  useEffect(() => {
+    setCurDate(getDate(calendar, date));
+  }, [calendar, date]);
   const onSelect = (date: CDate) => {
-    alert(`Selected ${date.toString()}`);
+    setCurDate(date);
   };
   const options = { selectOtherMonth, showOtherMonth };
-  return <Datepicker calendar={calendar} date={curDate} onSelect={onSelect} options={options} />;
+  const theme = alternateTheme ? altTheme : undefined;
+  return <Datepicker calendar={calendar} date={curDate} onSelect={onSelect} options={options} theme={theme} />;
 }
 
 export const Default = Template.bind({});
-Default.args = {
-  calendarName: 'Gregorian'
-};

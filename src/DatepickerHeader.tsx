@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import { CDate } from 'world-calendars';
+import * as S from './DatepickerHeader.styles';
 import { NotifyDate } from './types';
 
 interface Props {
@@ -31,16 +32,16 @@ const DatepickerHeader = ({ curDate, setCurDate }: Props) => {
 
   return (
     <div className="datepickerHeader">
-      <select aria-label="Select month" onChange={setMonth} value={curDate.month()}>
+      <S.Select aria-label="Select month" onChange={setMonth} value={curDate.month()}>
         {cal.local.monthNames.map((name, i) => (
           <option key={name} value={i + cal.minMonth}>
             {name}
           </option>
         ))}
-      </select>
-      <select aria-label="Select year" onChange={setYear} value={year}>
+      </S.Select>
+      <S.Select aria-label="Select year" onChange={setYear} value={year}>
         {generateYears(year)}
-      </select>
+      </S.Select>
     </div>
   );
 };

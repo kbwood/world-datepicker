@@ -1,8 +1,10 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import { render } from '@testing-library/react';
 import Calendars from 'world-calendars';
 import 'world-calendars/lib/Gregorian';
 import DatepickerMonth from '../src/DatepickerMonth';
+import defaultTheme from '../src/theme';
 
 jest.mock('../src/DatepickerHeader');
 jest.mock('../src/DatepickerWeek');
@@ -18,15 +20,23 @@ describe('(Component) DatepickerMonth', () => {
       options: {},
       setCurDate: () => {}
     };
-    const { container } = render(<DatepickerMonth {...props} />);
+    const { container } = render(
+      <ThemeProvider theme={defaultTheme}>
+        <DatepickerMonth {...props} />
+      </ThemeProvider>
+    );
 
     expect(container).toMatchInlineSnapshot(`
       <div>
         <table
-          class="datepickerMonth"
+          class="sc-bczRLJ eeaCGT"
         >
-          <thead>
-            <tr>
+          <thead
+            class="sc-gsnTZi eUAcrB"
+          >
+            <tr
+              class="sc-dkzDqf buhFDb"
+            >
               <th
                 colspan="7"
               >
@@ -35,7 +45,9 @@ describe('(Component) DatepickerMonth', () => {
                 </div>
               </th>
             </tr>
-            <tr>
+            <tr
+              class="sc-hKMtZM duNagM"
+            >
               <th>
                 Su
               </th>
@@ -59,7 +71,9 @@ describe('(Component) DatepickerMonth', () => {
               </th>
             </tr>
           </thead>
-          <tbody>
+          <tbody
+            class="sc-eCYdqJ dntofl"
+          >
             <tr>
               <td>
                 Week from 2022-06-26 (Gregorian) - 7 days (current 2022-07-03 (Gregorian))

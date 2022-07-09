@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { CalendarBase, CDate } from 'world-calendars';
 import DatepickerHeader from './DatepickerHeader';
+import * as S from './DatepickerMonth.styles';
 import DatepickerWeek from './DatepickerWeek';
 import { DisplayOptions, NotifyDate } from './types';
 
@@ -63,21 +64,21 @@ const DatepickerMonth = ({ curDate, forDate, onSelect, options, setCurDate }: Pr
   );
 
   return (
-    <table className="datepickerMonth">
-      <thead>
-        <tr>
+    <S.MonthTable>
+      <S.TableHeader>
+        <S.MonthHeader>
           <th colSpan={daysInWeek}>
             <DatepickerHeader curDate={curDate} setCurDate={setCurDate} />
           </th>
-        </tr>
-        <tr>
+        </S.MonthHeader>
+        <S.WeekHeader>
           {generateDays(cal)}
-        </tr>
-      </thead>
-      <tbody>
+        </S.WeekHeader>
+      </S.TableHeader>
+      <S.TableBody>
         {generateWeeks(monthStart, weekCount, daysInWeek, options, curDate, onSelect)}
-      </tbody>
-    </table>
+      </S.TableBody>
+    </S.MonthTable>
   );
 };
 

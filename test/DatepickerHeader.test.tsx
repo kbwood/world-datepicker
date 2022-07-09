@@ -1,20 +1,29 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Calendars from 'world-calendars';
 import 'world-calendars/lib/Gregorian';
-import DatepickerHeader from '../src/DatepickerHeader';
+import DatepickerHeader, { Props } from '../src/DatepickerHeader';
+import defaultTheme from '../src/theme';
 
 describe('(Component) DatepickerHeader', () => {
   const gregorian = Calendars.instance('gregorian');
   const user = userEvent.setup();
+
+  const renderComp = (props: Props) =>
+    render(
+      <ThemeProvider theme={defaultTheme}>
+        <DatepickerHeader {...props} />
+      </ThemeProvider>
+    );
 
   it('should render a month header', () => {
     const props = {
       curDate: gregorian.date(2022, 7, 3),
       setCurDate: () => {}
     };
-    const { container } = render(<DatepickerHeader {...props} />);
+    const { container } = renderComp(props);
 
     expect(container).toMatchInlineSnapshot(`
       <div>
@@ -23,6 +32,7 @@ describe('(Component) DatepickerHeader', () => {
         >
           <select
             aria-label="Select month"
+            class="sc-bczRLJ exCqBZ"
           >
             <option
               value="1"
@@ -87,6 +97,7 @@ describe('(Component) DatepickerHeader', () => {
           </select>
           <select
             aria-label="Select year"
+            class="sc-bczRLJ exCqBZ"
           >
             <option
               value="2002"
@@ -304,7 +315,7 @@ describe('(Component) DatepickerHeader', () => {
       curDate: gregorian.date(2022, 7, 3),
       setCurDate: jest.fn()
     };
-    render(<DatepickerHeader {...props} />);
+    renderComp(props);
     await user.selectOptions(screen.getByLabelText('Select month'), 'February');
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
@@ -316,7 +327,7 @@ describe('(Component) DatepickerHeader', () => {
       curDate: gregorian.date(2022, 7, 3),
       setCurDate: jest.fn()
     };
-    render(<DatepickerHeader {...props} />);
+    renderComp(props);
     await user.selectOptions(screen.getByLabelText('Select year'), '2024');
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);

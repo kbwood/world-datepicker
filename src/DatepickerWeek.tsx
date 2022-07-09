@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react';
 import { CDate } from 'world-calendars';
 import { DisplayOptions, NotifyDate } from './types';
+import * as S from './DatepickerWeek.styles';
 
 interface Props {
   curDate: CDate;
@@ -17,6 +18,7 @@ const DatepickerWeek = ({ curDate, daysInWeek, fromDate, onSelect, options }: Pr
     onSelect(fromDate.date(y, m, d));
   };
 
+  const today = curDate.calendar().date();
   const days: ReactNode[] = [];
   let forDay = fromDate;
   for (let i = 0; i < daysInWeek; i += 1) {
@@ -25,17 +27,21 @@ const DatepickerWeek = ({ curDate, daysInWeek, fromDate, onSelect, options }: Pr
     if (options.showOtherMonth || inThisMonth) {
       if (options.selectOtherMonth || inThisMonth) {
         days.push(
-          <td key={date}>
-            <button onClick={selectDate} type="button" value={date}>
-              {forDay.day()}{curDate.compareTo(forDay) === 0 ? '*' : ''}
-            </button>
-          </td>
+          <S.DayCell key={date} inThisMonth={inThisMonth} selected={forDay.compareTo(curDate) === 0} today={forDay.compareTo(today) === 0} weekend={!forDay.weekDay()}>
+            <S.DayButton onClick={selectDate} type="button" value={date}>
+              {forDay.day()}
+            </S.DayButton>
+          </S.DayCell>
         );
       } else {
-        days.push(<td key={date}>{forDay.day()}</td>);
+        days.push(
+          <S.DayCell key={date} inThisMonth={inThisMonth} selected={forDay.compareTo(curDate) === 0} today={forDay.compareTo(today) === 0} weekend={!forDay.weekDay()}>
+            <S.DayLabel>{forDay.day()}</S.DayLabel>
+          </S.DayCell>
+        );
       }
     } else {
-      days.push(<td key={date}>&nbsp;</td>);
+      days.push(<S.DayCell key={date} inThisMonth={inThisMonth} weekend={!forDay.weekDay()}>&nbsp;</S.DayCell>);
     }
     forDay = forDay.add(1, 'd');
   }
