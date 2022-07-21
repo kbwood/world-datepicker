@@ -4,8 +4,8 @@ import Calendars from '@kbwood/world-calendars';
 import '@kbwood/world-calendars/lib/Gregorian';
 import Datepicker from '../src/Datepicker';
 
-jest.mock('../src/DatepickerControls');
-jest.mock('../src/DatepickerMonth');
+jest.mock('../src/Controls');
+jest.mock('../src/Month');
 
 describe('Datepicker', () => {
   const gregorian = Calendars.instance('gregorian');
@@ -18,7 +18,8 @@ describe('Datepicker', () => {
     ).toMatchInlineSnapshot(`
       <div>
         <div
-          class="sc-bczRLJ dwkSbA"
+          aria-label="Select a date"
+          class="sc-bczRLJ jHeHYS"
         >
           <div>
             Controls (current 2022-07-03 (Gregorian))

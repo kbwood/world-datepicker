@@ -1,7 +1,12 @@
 import styled from 'styled-components';
 
-export const Datepicker = styled.div`
+type DatepickerProps = {
+  isRTL: boolean,
+}
+
+export const Datepicker = styled.div<DatepickerProps>`
   border: 1px solid ${(props) => props.theme.color.border};
+  direction: ${(props) => props.isRTL ? 'rtl' : 'ltr'};
   font-family: ${(props) => props.theme.font.family};
   font-size: ${(props) => props.theme.font.sizeHeader};
   width: 18em;

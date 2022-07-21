@@ -3,39 +3,42 @@ import { ThemeProvider } from 'styled-components';
 import { render } from '@testing-library/react';
 import Calendars from '@kbwood/world-calendars';
 import '@kbwood/world-calendars/lib/Gregorian';
-import DatepickerMonth from '../src/DatepickerMonth';
+import { localisations } from '../src/Datepicker';
+import Month from '../src/Month';
 import defaultTheme from '../src/theme';
 
-jest.mock('../src/DatepickerHeader');
-jest.mock('../src/DatepickerWeek');
+jest.mock('../src/Header');
+jest.mock('../src/Week');
 
-describe('(Component) DatepickerMonth', () => {
+describe('(Component) Month', () => {
   const gregorian = Calendars.instance('gregorian');
 
   it('should render a month', () => {
     const props = {
       curDate: gregorian.date(2022, 7, 3),
       forDate: gregorian.date(2022, 7, 1),
+      local: localisations[''],
       onSelect: () => {},
       options: {},
       setCurDate: () => {}
     };
     const { container } = render(
       <ThemeProvider theme={defaultTheme}>
-        <DatepickerMonth {...props} />
+        <Month {...props} />
       </ThemeProvider>
     );
 
     expect(container).toMatchInlineSnapshot(`
       <div>
         <table
-          class="sc-bczRLJ eeaCGT"
+          aria-label="July 2022"
+          class="sc-hKMtZM iSDivR"
         >
           <thead
-            class="sc-gsnTZi eUAcrB"
+            class="sc-eCYdqJ egpUwA"
           >
             <tr
-              class="sc-dkzDqf buhFDb"
+              class="sc-jSMfEi gngSZr"
             >
               <th
                 colspan="7"
@@ -46,33 +49,61 @@ describe('(Component) DatepickerMonth', () => {
               </th>
             </tr>
             <tr
-              class="sc-hKMtZM duNagM"
+              class="sc-gKXOVf evLySO"
             >
               <th>
-                Su
+                <abbr
+                  title="Sunday"
+                >
+                  Su
+                </abbr>
               </th>
               <th>
-                Mo
+                <abbr
+                  title="Monday"
+                >
+                  Mo
+                </abbr>
               </th>
               <th>
-                Tu
+                <abbr
+                  title="Tuesday"
+                >
+                  Tu
+                </abbr>
               </th>
               <th>
-                We
+                <abbr
+                  title="Wednesday"
+                >
+                  We
+                </abbr>
               </th>
               <th>
-                Th
+                <abbr
+                  title="Thursday"
+                >
+                  Th
+                </abbr>
               </th>
               <th>
-                Fr
+                <abbr
+                  title="Friday"
+                >
+                  Fr
+                </abbr>
               </th>
               <th>
-                Sa
+                <abbr
+                  title="Saturday"
+                >
+                  Sa
+                </abbr>
               </th>
             </tr>
           </thead>
           <tbody
-            class="sc-eCYdqJ dntofl"
+            class="sc-iBkjds djEmsT"
           >
             <tr>
               <td>

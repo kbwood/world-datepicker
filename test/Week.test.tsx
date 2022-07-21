@@ -4,10 +4,10 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Calendars from '@kbwood/world-calendars';
 import '@kbwood/world-calendars/lib/Gregorian';
-import DatepickerWeek, { Props } from '../src/DatepickerWeek';
+import Week, { Props } from '../src/Week';
 import defaultTheme from '../src/theme';
 
-describe('(Component) DatepickerWeek', () => {
+describe('(Component) Week', () => {
   const gregorian = Calendars.instance('gregorian');
   const table = document.createElement('table');
   document.body.appendChild(table);
@@ -19,7 +19,7 @@ describe('(Component) DatepickerWeek', () => {
   const renderComp = (props: Props) =>
     render(
       <ThemeProvider theme={defaultTheme}>
-        <DatepickerWeek {...props} />
+        <Week {...props} />
       </ThemeProvider>,
       renderOptions
     );
@@ -41,7 +41,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ jPKstU"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="-1"
               type="button"
               value="2022-6-29"
             >
@@ -52,7 +53,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ jPKstU"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="-1"
               type="button"
               value="2022-6-30"
             >
@@ -63,7 +65,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ gSNRqz"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="-1"
               type="button"
               value="2022-7-1"
             >
@@ -74,7 +77,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ cWHtcq"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="-1"
               type="button"
               value="2022-7-2"
             >
@@ -85,7 +89,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ iBhMdr"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="0"
               type="button"
               value="2022-7-3"
             >
@@ -96,7 +101,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ gSNRqz"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="-1"
               type="button"
               value="2022-7-4"
             >
@@ -107,7 +113,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ gSNRqz"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="-1"
               type="button"
               value="2022-7-5"
             >
@@ -180,7 +187,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ gSNRqz"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="-1"
               type="button"
               value="2022-7-1"
             >
@@ -191,7 +199,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ cWHtcq"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="-1"
               type="button"
               value="2022-7-2"
             >
@@ -202,7 +211,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ iBhMdr"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="0"
               type="button"
               value="2022-7-3"
             >
@@ -213,7 +223,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ gSNRqz"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="-1"
               type="button"
               value="2022-7-4"
             >
@@ -224,7 +235,8 @@ describe('(Component) DatepickerWeek', () => {
             class="sc-bczRLJ gSNRqz"
           >
             <button
-              class="sc-gsnTZi kSyqLh"
+              class="sc-gsnTZi jcbbiC"
+              tabindex="-1"
               type="button"
               value="2022-7-5"
             >

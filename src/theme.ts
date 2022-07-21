@@ -51,8 +51,8 @@ const defaultTheme: Theme = {
   },
   font: {
     family: 'Arial,Helvetica,sans-serif',
-    sizeBody: '14px',
-    sizeHeader: '16px'
+    sizeBody: '20px',
+    sizeHeader: '24px'
   }
 };
 
