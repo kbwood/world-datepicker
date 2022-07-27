@@ -31,6 +31,7 @@ import '@kbwood/world-calendars/lib/l10n/UmmAlQura-ar';
 import Datepicker from './Datepicker';
 import './l10n/Datepicker-ar';
 import './l10n/Datepicker-fr';
+import './l10n/Datepicker-zh-CN';
 import { Theme } from './theme';
 
 type StoryProps = {
@@ -89,7 +90,7 @@ export default {
     date: { control: 'text' },
     datepickerLanguage: {
       control: 'select',
-      options: ['  (Default)', 'ar (Arabic)', 'fr (French)']
+      options: ['  (Default)', 'ar (Arabic)', 'fr (French)', 'zh-CN (Chinese)']
     },
     selectOtherMonth: { control: 'boolean' },
     showOtherMonth: { control: 'boolean' }

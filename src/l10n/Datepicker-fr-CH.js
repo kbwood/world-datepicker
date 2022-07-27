@@ -1,8 +1,9 @@
-/* http://keith-wood.name/world-datepicker.html
-   French localisation for world datepicker.
-   Stéphane Nahmani (sholby@sholby.net). */
+﻿/* http://keith-wood.name/world-datepicker.html
+   Swiss French localisation for world datepicker.
+   Written by Martin Voelkle (martin.voelkle@e-tc.ch). */
 import { localisations } from '../Datepicker';
-localisations.fr = {
+
+localisations['fr-CH'] = {
   clear: 'Effacer',
   clearLabel: 'Effacer la date sélectionnée',
   close: 'Fermer',
@@ -25,5 +26,5 @@ localisations.fr = {
   todayLabel: 'Voir aujourd\'hui',
   week: 'Sm',
   weekLabel: 'Semaine de l\'année',
-  yearLabel: 'Voir une autre année'
+  yearLabel: 'Voir une autre année',
 };
