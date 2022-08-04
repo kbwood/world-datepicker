@@ -6,6 +6,7 @@ import Calendars from '@kbwood/world-calendars';
 import '@kbwood/world-calendars/lib/Gregorian';
 import Controls, { Props } from '../src/Controls';
 import { localisations } from '../src/Datepicker';
+import '../src/l10n/Datepicker-fr';
 import defaultTheme from '../src/theme';
 
 describe('(Component) Controls', () => {
@@ -88,9 +89,7 @@ describe('(Component) Controls', () => {
       setCurDate: jest.fn()
     };
     renderComp(props);
-    await user.click(
-      screen.getByRole('button', { name: 'Show the previous year' })
-    );
+    await user.click(screen.getByRole('button', { name: 'Show the previous year' }));
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
     expect(props.setCurDate).toHaveBeenCalledWith(gregorian.date(2021, 7, 3));
@@ -103,9 +102,7 @@ describe('(Component) Controls', () => {
       setCurDate: jest.fn()
     };
     renderComp(props);
-    await user.click(
-      screen.getByRole('button', { name: 'Show the previous month' })
-    );
+    await user.click(screen.getByRole('button', { name: 'Show the previous month' }));
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
     expect(props.setCurDate).toHaveBeenCalledWith(gregorian.date(2022, 6, 3));
@@ -118,9 +115,7 @@ describe('(Component) Controls', () => {
       setCurDate: jest.fn()
     };
     renderComp(props);
-    await user.click(
-      screen.getByRole('button', { name: 'Show today\'s month' })
-    );
+    await user.click(screen.getByRole('button', { name: 'Show today\'s month' }));
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
     expect(props.setCurDate).toHaveBeenCalledWith(gregorian.date(2022, 7, 5));
@@ -133,9 +128,7 @@ describe('(Component) Controls', () => {
       setCurDate: jest.fn()
     };
     renderComp(props);
-    await user.click(
-      screen.getByRole('button', { name: 'Show the next month' })
-    );
+    await user.click(screen.getByRole('button', { name: 'Show the next month' }));
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
     expect(props.setCurDate).toHaveBeenCalledWith(gregorian.date(2022, 8, 3));
@@ -148,11 +141,24 @@ describe('(Component) Controls', () => {
       setCurDate: jest.fn()
     };
     renderComp(props);
-    await user.click(
-      screen.getByRole('button', { name: 'Show the next year' })
-    );
+    await user.click(screen.getByRole('button', { name: 'Show the next year' }));
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
     expect(props.setCurDate).toHaveBeenCalledWith(gregorian.date(2023, 7, 3));
+  });
+
+  it('should render the datepicker controls in French', () => {
+    const props = {
+      curDate: gregorian.date(2022, 7, 3),
+      local: localisations.fr,
+      setCurDate: () => {}
+    };
+    renderComp(props);
+
+    expect(screen.getByRole('button', { name: 'Voir l\'année précédent' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Voir le mois précédent' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Voir aujourd\'hui' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Voir le mois suivant' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Voir l\'année suivant' })).toBeInTheDocument();
   });
 });

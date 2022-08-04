@@ -5,6 +5,7 @@ import userEvent from '@testing-library/user-event';
 import Calendars from '@kbwood/world-calendars';
 import '@kbwood/world-calendars/lib/Gregorian';
 import { localisations } from '../src/Datepicker';
+import '../src/l10n/Datepicker-fr';
 import Header, { Props } from '../src/Header';
 import defaultTheme from '../src/theme';
 
@@ -315,10 +316,7 @@ describe('(Component) Header', () => {
       setCurDate: jest.fn()
     };
     renderComp(props);
-    await user.selectOptions(
-      screen.getByLabelText('Change the month'),
-      'February'
-    );
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Change the month' }), 'February');
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
     expect(props.setCurDate).toHaveBeenCalledWith(gregorian.date(2022, 2, 3));
@@ -331,9 +329,21 @@ describe('(Component) Header', () => {
       setCurDate: jest.fn()
     };
     renderComp(props);
-    await user.selectOptions(screen.getByLabelText('Change the year'), '2024');
+    await user.selectOptions(screen.getByRole('combobox', { name: 'Change the year' }), '2024');
 
     expect(props.setCurDate).toHaveBeenCalledTimes(1);
     expect(props.setCurDate).toHaveBeenCalledWith(gregorian.date(2024, 7, 3));
+  });
+
+  it('should render a month header in French', () => {
+    const props = {
+      curDate: gregorian.date(2022, 7, 3),
+      local: localisations.fr,
+      setCurDate: () => {}
+    };
+    renderComp(props);
+
+    expect(screen.getByRole('combobox', { name: 'Voir un autre mois' })).toBeInTheDocument();
+    expect(screen.getByRole('combobox', { name: 'Voir une autre année' })).toBeInTheDocument();
   });
 });

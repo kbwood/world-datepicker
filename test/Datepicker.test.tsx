@@ -3,6 +3,7 @@ import { render } from '@testing-library/react';
 import Calendars from '@kbwood/world-calendars';
 import '@kbwood/world-calendars/lib/Gregorian';
 import Datepicker from '../src/Datepicker';
+import '../src/l10n/Datepicker-fr';
 
 jest.mock('../src/Controls');
 jest.mock('../src/Month');
@@ -30,5 +31,11 @@ describe('Datepicker', () => {
         </div>
       </div>
     `);
+  });
+
+  it('should display the datepicker in French', () => {
+    const { container } = render(<Datepicker calendar={gregorian} date={gregorian.date(2022, 7, 3)} options={{ language: 'fr' }} />);
+
+    expect(container.querySelector('div[aria-label="Choisir la date"]')).toBeInTheDocument();
   });
 });
